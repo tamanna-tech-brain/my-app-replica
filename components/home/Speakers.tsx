@@ -3,60 +3,68 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
+import NotchBadge from "@/components/ui/NotchBadge";
 import { SPEAKERS } from "@/lib/site-data";
 import "swiper/css";
 
-function SpeakerCard({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
+function SpeakerCard({
+  speaker,
+  textAbove,
+}: {
+  speaker: (typeof SPEAKERS)[number];
+  textAbove: boolean;
+}) {
+  const nameBlock = (
+    <>
+      <h3 className="text-lg font-bold text-white md:text-xl">{speaker.name}</h3>
+      <p className="mt-1 text-sm text-[#8a8a8a]">{speaker.role}</p>
+    </>
+  );
+
   return (
-    <Link href={`/speakers/${speaker.id}`} className="group block h-full">
-      <motion.article
-        whileHover={{ y: -8, scale: 1.02 }}
-        transition={{ duration: 0.35 }}
-        className="speaker-lime-bg h-full overflow-hidden rounded-[28px] border border-white/10"
-      >
-        <div className="relative aspect-[3/4] overflow-hidden">
-          <Image
-            src={speaker.image}
-            alt={speaker.name}
-            fill
-            className="object-cover grayscale transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width:768px) 80vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
+    <Link href={`/speakers/${speaker.id}`} className="group block">
+      {textAbove && <div className="mb-4 text-center md:mb-5">{nameBlock}</div>}
+      <div className="step-corner relative mx-auto aspect-square w-full max-w-[280px] border border-white/10 p-3">
+        <div className="speaker-step-bg relative h-full w-full p-4">
+          <div className="relative h-full w-full overflow-hidden">
+            <Image
+              src={speaker.image}
+              alt={speaker.name}
+              fill
+              className="object-cover object-top grayscale transition-transform duration-500 group-hover:scale-105"
+              sizes="280px"
+            />
+          </div>
         </div>
-        <div className="px-5 pb-6 pt-4">
-          <h3 className="text-lg font-bold text-[#f5f5f5] md:text-xl">{speaker.name}</h3>
-          <p className="mt-1 text-sm font-medium text-[#d9ff3f]">{speaker.role}</p>
-        </div>
-      </motion.article>
+      </div>
+      {!textAbove && <div className="mt-4 text-center md:mt-5">{nameBlock}</div>}
     </Link>
   );
 }
 
 export default function Speakers() {
   return (
-    <section id="speakers" className="section-border section-y">
+    <section id="speakers" className="section-border bg-black section-y">
       <Container>
-        <div className="mb-12 md:mb-16">
-          <p className="section-label mb-4">Speakers</p>
-          <h2 className="text-4xl font-bold tracking-tight text-[#f5f5f5] md:text-5xl lg:text-7xl">
-            Our Speakers
-          </h2>
+        <div className="mb-14 text-center">
+          <NotchBadge borderColor="border-[#d9ff3f]" className="mb-6">
+            Speakers
+          </NotchBadge>
+          <h2 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">Our Speakers</h2>
         </div>
 
-        <div className="hidden gap-6 md:grid md:grid-cols-3">
-          {SPEAKERS.map((speaker) => (
-            <SpeakerCard key={speaker.id} speaker={speaker} />
+        <div className="hidden gap-8 md:grid md:grid-cols-3">
+          {SPEAKERS.map((speaker, i) => (
+            <SpeakerCard key={speaker.id} speaker={speaker} textAbove={i < 3} />
           ))}
         </div>
 
         <div className="md:hidden">
-          <Swiper spaceBetween={14} slidesPerView={1.15} className="!overflow-visible">
-            {SPEAKERS.map((speaker) => (
+          <Swiper spaceBetween={16} slidesPerView={1.15} className="!overflow-visible">
+            {SPEAKERS.map((speaker, i) => (
               <SwiperSlide key={speaker.id}>
-                <SpeakerCard speaker={speaker} />
+                <SpeakerCard speaker={speaker} textAbove={i % 2 === 0} />
               </SwiperSlide>
             ))}
           </Swiper>

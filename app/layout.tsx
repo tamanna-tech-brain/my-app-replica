@@ -21,7 +21,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} antialiased`}>
-      <body className="min-h-screen bg-[#080808] text-[#f5f5f5]">
+      <body className="min-h-screen bg-black text-[#f5f5f5]">
         <div className="noise-overlay" aria-hidden="true" />
         <Navbar />
         <main className="relative z-10">{children}</main>

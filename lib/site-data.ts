@@ -1,13 +1,13 @@
 export const SITE = {
   name: "Config",
   email: "info@config.info",
-  location: "San Francisco, CA and Online",
+  location: "San Francisco, CA, USA and Online",
 } as const;
 
 export const HERO = {
-  location: "San Francisco, CA and Online",
+  location: "SAN FRANCISCO, CA AND ONLINE",
   title: "Global Digital AI",
-  subtitle: "Summit 2026",
+  subtitle: "— Summit 2026",
   description: "AI relevant events. In person and online tickets now available",
   cta: "Register Now",
   ctaHref: "/tickets",
@@ -27,9 +27,9 @@ export const HERO = {
 };
 
 export const ABOUT_STATS = [
-  { value: 50, suffix: "+", label: "Company founders speaker" },
-  { value: 50, suffix: "+", label: "Set are available in online" },
-  { value: 50, suffix: "+", label: "Free sessions in days" },
+  { value: 40, suffix: "+", label: "Company founders speaker", tone: "cyan" as const },
+  { value: 5000, suffix: "+", label: "Set are available in online", tone: "lime" as const },
+  { value: 25, suffix: "+", label: "Free sessions in days", tone: "white" as const },
 ];
 
 export const TICKET_STRIP = {

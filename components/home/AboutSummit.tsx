@@ -5,31 +5,29 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { ABOUT_STATS } from "@/lib/site-data";
+import { cn } from "@/lib/cn";
 
 function CountUp({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!inView) return;
-    let current = 0;
-    const step = Math.max(1, Math.floor(value / 40));
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(current);
-      }
-    }, 30);
-    return () => clearInterval(timer);
+    const duration = 1800;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      setCount(Math.floor(value * p));
+      if (p < 1) requestAnimationFrame(tick);
+      else setCount(value);
+    };
+    requestAnimationFrame(tick);
   }, [inView, value]);
 
   return (
     <span ref={ref}>
-      {count}
+      {count.toLocaleString()}
       {suffix}
     </span>
   );
@@ -37,30 +35,36 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 
 export default function AboutSummit() {
   return (
-    <section id="about-summit" className="section-border section-y">
+    <section id="about-summit" className="section-border bg-black section-y">
       <Container>
-        <div className="mb-10 flex flex-wrap items-center gap-5">
-          <Link href="/about" className="text-sm font-medium text-[#8a8a8a] transition-colors hover:text-[#d9ff3f]">
+        <div className="mb-10 flex gap-6">
+          <Link href="/about" className="text-sm text-[#8a8a8a] hover:text-white">
             About
           </Link>
-          <Link href="/agenda" className="text-sm font-medium text-[#8a8a8a] transition-colors hover:text-[#d9ff3f]">
+          <Link href="/agenda" className="text-sm text-[#8a8a8a] hover:text-white">
             Agenda
           </Link>
         </div>
 
-        <h2 className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-[#f5f5f5] md:text-5xl lg:text-6xl">
+        <h2 className="max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
           The Definitive AI Relevant Summit
         </h2>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {ABOUT_STATS.map((stat) => (
-            <div key={stat.label}>
-              <p className="text-5xl font-extrabold tracking-tight text-[#f5f5f5] md:text-6xl lg:text-7xl">
+            <div
+              key={stat.label}
+              className={cn(
+                "stat-pill",
+                stat.tone === "cyan" && "stat-pill-cyan",
+                stat.tone === "lime" && "stat-pill-lime",
+                stat.tone === "white" && "stat-pill-white"
+              )}
+            >
+              <p className="text-5xl font-extrabold md:text-6xl">
                 <CountUp value={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#8a8a8a] md:text-base">
-                {stat.label}
-              </p>
+              <p className="mt-3 text-sm font-medium leading-snug md:text-base">{stat.label}</p>
             </div>
           ))}
         </div>

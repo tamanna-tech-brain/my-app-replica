@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Container from "@/components/ui/Container";
+import SplitButton from "@/components/ui/SplitButton";
 
 const LEFT_PAGES = [
   { name: "Home", href: "/" },
@@ -31,6 +32,16 @@ const NAV_LINKS = [
   { name: "Agenda", href: "/agenda" },
   { name: "Blog", href: "/blog" },
 ];
+
+function ConfigLogo() {
+  return (
+    <div className="relative flex h-8 w-8 items-center justify-center">
+      <span className="absolute h-5 w-1.5 -rotate-[30deg] rounded-sm bg-[#8b3dff]" />
+      <span className="absolute h-5 w-1.5 rotate-[15deg] rounded-sm bg-[#ff6a00]" />
+      <span className="absolute h-5 w-1.5 rotate-[45deg] rounded-sm bg-[#ff1cc8]" />
+    </div>
+  );
+}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -64,67 +75,57 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 bg-black transition-transform duration-300 ${
         hidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      <div
-        className={`border-b transition-colors ${
-          scrolled ? "border-white/10 bg-[#080808]/90 backdrop-blur-xl" : "border-transparent bg-transparent"
-        }`}
-      >
+      <div className={scrolled ? "border-b border-white/10" : ""}>
         <Container className="flex h-[90px] items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#8b3dff] to-[#ff1cc8] text-sm font-bold">
-              C
-            </div>
-            <span className="text-lg font-bold">Config</span>
+            <ConfigLogo />
+            <span className="text-lg font-bold text-white">Config</span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="hidden items-center lg:flex">
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setOpenDropdown((v) => !v)}
-                className="flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium text-[#8a8a8a] transition-colors hover:text-[#f5f5f5]"
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-[#a1a1aa] hover:text-white"
               >
                 All Pages
-                <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown ? "rotate-180" : ""}`} />
+                <ChevronDown className={`h-3.5 w-3.5 transition-transform ${openDropdown ? "rotate-180" : ""}`} />
               </button>
 
               <AnimatePresence>
                 {openDropdown && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    className="glass-menu absolute left-1/2 top-full mt-3 w-[520px] -translate-x-1/2 p-6 shadow-2xl"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    className="glass-menu absolute left-0 top-full mt-2 w-[480px] p-8 shadow-2xl"
                   >
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-1">
-                      <div>
-                        {LEFT_PAGES.map((page) => (
-                          <Link
-                            key={page.name}
-                            href={page.href}
-                            onClick={() => setOpenDropdown(false)}
-                            className="block rounded-lg px-3 py-2.5 text-sm text-[#8a8a8a] transition-colors hover:bg-white/[0.04] hover:text-[#f5f5f5]"
-                          >
-                            {page.name}
-                          </Link>
-                        ))}
-                      </div>
-                      <div>
-                        {RIGHT_PAGES.map((page) => (
-                          <Link
-                            key={page.name}
-                            href={page.href}
-                            onClick={() => setOpenDropdown(false)}
-                            className="block rounded-lg px-3 py-2.5 text-sm text-[#8a8a8a] transition-colors hover:bg-white/[0.04] hover:text-[#f5f5f5]"
-                          >
-                            {page.name}
-                          </Link>
-                        ))}
-                      </div>
+                    <div className="grid grid-cols-2 gap-x-10 gap-y-1">
+                      {LEFT_PAGES.map((page) => (
+                        <Link
+                          key={page.name}
+                          href={page.href}
+                          onClick={() => setOpenDropdown(false)}
+                          className="block py-2 text-sm text-[#8a8a8a] hover:text-white"
+                        >
+                          {page.name}
+                        </Link>
+                      ))}
+                      {RIGHT_PAGES.map((page) => (
+                        <Link
+                          key={page.name}
+                          href={page.href}
+                          onClick={() => setOpenDropdown(false)}
+                          className="block py-2 text-sm text-[#8a8a8a] hover:text-white"
+                        >
+                          {page.name}
+                        </Link>
+                      ))}
                     </div>
                   </motion.div>
                 )}
@@ -135,8 +136,8 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                  pathname === link.href ? "text-[#f5f5f5]" : "text-[#8a8a8a] hover:text-[#f5f5f5]"
+                className={`nav-dot px-4 py-2 text-sm font-medium ${
+                  pathname === link.href ? "text-white" : "text-[#a1a1aa] hover:text-white"
                 }`}
               >
                 {link.name}
@@ -144,13 +145,15 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <Link href="/tickets" className="btn-lime hidden text-sm lg:inline-flex">
-            Get Ticket
-          </Link>
+          <div className="hidden lg:block">
+            <SplitButton href="/tickets" variant="lime">
+              Get Ticket
+            </SplitButton>
+          </div>
 
           <button
             type="button"
-            className="rounded-lg p-2 text-[#8a8a8a] lg:hidden"
+            className="p-2 text-[#a1a1aa] lg:hidden"
             onClick={() => setOpenMenu((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -168,18 +171,13 @@ export default function Navbar() {
             >
               <Container className="py-5">
                 {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpenMenu(false)}
-                    className="block py-3 text-[#8a8a8a] hover:text-[#f5f5f5]"
-                  >
+                  <Link key={link.href} href={link.href} onClick={() => setOpenMenu(false)} className="block py-3 text-[#a1a1aa]">
                     {link.name}
                   </Link>
                 ))}
-                <Link href="/tickets" onClick={() => setOpenMenu(false)} className="btn-lime mt-4 w-full">
+                <SplitButton href="/tickets" variant="lime" className="mt-4">
                   Get Ticket
-                </Link>
+                </SplitButton>
               </Container>
             </motion.div>
           )}
