@@ -35,7 +35,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 
 export default function AboutSummit() {
   return (
-    <section id="about-summit" className="section-border bg-black section-y">
+    <section id="about-summit" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="mb-10 flex gap-6">
           <Link href="/about" className="text-sm text-[#8a8a8a] hover:text-white">

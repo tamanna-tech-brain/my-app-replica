@@ -18,7 +18,7 @@ const PILL_POS = [
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative overflow-hidden bg-black pt-[var(--nav-h)]">
+    <section id="hero" className="relative overflow-hidden bg-[#151515] pt-[var(--nav-h)]">
       <div className="absolute bottom-0 left-0 h-[420px] w-[420px] rounded-full bg-gradient-to-tr from-[#ff4500]/30 via-[#ff1cc8]/15 to-transparent blur-[100px]" />
       <div className="absolute bottom-[18%] left-[28%] h-48 w-64 dots-grid opacity-40" />
 
@@ -72,7 +72,7 @@ export default function Hero() {
                 className="object-cover object-top grayscale"
                 sizes="(max-width:768px) 90vw, 480px"
               />
-              <div className="absolute inset-0 bg-[#7c3aed]/30 mix-blend-color" />
+              <div className="absolute inset-0 bg-[#7e3bed]/35 mix-blend-color" />
             </div>
 
             {HERO.datePills.map((pill, i) => (

@@ -47,7 +47,7 @@ function SessionRow({ session }: { session: (typeof SESSIONS)[number] }) {
 
 export default function Agenda() {
   return (
-    <section id="agenda" className="section-border bg-black section-y">
+    <section id="agenda" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="mb-14 text-center">
           <NotchBadge borderColor="border-[#70e1f5]" className="mb-6">

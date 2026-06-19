@@ -11,7 +11,7 @@ const SHAPES = ["gallery-step", "gallery-oval", "gallery-blob", "gallery-step"] 
 
 export default function EventGallery() {
   return (
-    <section id="gallery" className="section-border bg-black section-y">
+    <section id="gallery" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="mb-14">
           <NotchBadge borderColor="border-[#70e1f5]" className="mb-6">
@@ -40,7 +40,7 @@ export default function EventGallery() {
                 className="object-cover grayscale"
                 sizes="360px"
               />
-              <div className="absolute inset-0 bg-[#7c3aed]/40 mix-blend-color" />
+              <div className="absolute inset-0 bg-[#7e3bed]/40 mix-blend-color" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </motion.div>
           ))}

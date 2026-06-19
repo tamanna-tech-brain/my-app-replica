@@ -5,7 +5,7 @@ import { SPEAKERS } from "@/lib/site-data";
 
 export default function CTASection() {
   return (
-    <section id="cta" className="section-border bg-black section-y">
+    <section id="cta" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="cta-banner relative overflow-hidden rounded-[32px] px-8 py-14 text-center md:px-16 md:py-20">
           <div className="relative z-10 mb-8 flex justify-center">

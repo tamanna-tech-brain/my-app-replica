@@ -1,32 +1,81 @@
 "use client";
 
-import PricingComponent from "@/components/Pricing";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import Container from "@/components/ui/Container";
+import NotchBadge from "@/components/ui/NotchBadge";
+import Pricing from "@/components/home/Pricing";
+import { TICKETS_FAQ } from "@/lib/site-data";
+import { cn } from "@/lib/cn";
 
 export default function TicketsPage() {
-  return (
-    <div className="pt-[140px] pb-24 min-h-screen">
-      <div className="max-w-[1400px] mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center max-w-3xl mx-auto mb-8 px-6 lg:px-8"
-        >
-          <div className="tag-lime mb-6 mx-auto">REGISTRATION</div>
-          <h1 className="text-5xl md:text-6xl lg:text-[80px] font-bold tracking-tight text-white mb-6">
-            Get Your <span className="gradient-text">Tickets</span>
-          </h1>
-          <p className="text-xl text-[#A1A1AA]">
-            Join 5,000+ technology leaders. Select the experience that fits you best.
-            Early bird pricing available for a limited time.
-          </p>
-        </motion.div>
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-        <div className="-mt-20">
-          <PricingComponent />
-        </div>
-      </div>
-    </div>
+  return (
+    <>
+      <section className="bg-[#151515] pt-[calc(var(--nav-h)+48px)] pb-8">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <NotchBadge borderColor="border-[#c6ff34]" className="mb-6">
+              Tickets Pricing
+            </NotchBadge>
+            <h1 className="page-hero-title text-white">Choose Your Tickets</h1>
+          </div>
+        </Container>
+      </section>
+
+      <Pricing hideHeader />
+
+      <section className="section-border bg-[#151515] section-y">
+        <Container>
+          <div className="mx-auto mb-14 max-w-3xl text-center">
+            <NotchBadge borderColor="border-[#66f7ff]" className="mb-6">
+              Faq&apos;s
+            </NotchBadge>
+            <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="mx-auto max-w-3xl space-y-3">
+            {TICKETS_FAQ.map((item, index) => {
+              const open = openIndex === index;
+              return (
+                <div key={item.q} className={cn("faq-item", open && "faq-item-open")}>
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    onClick={() => setOpenIndex(open ? null : index)}
+                  >
+                    <span className={cn("font-semibold", open ? "text-white" : "text-[#a6a6a6]")}>
+                      {item.q}
+                    </span>
+                    <ChevronDown
+                      className={cn(
+                        "h-5 w-5 shrink-0 transition-transform",
+                        open ? "rotate-180 text-[#c6ff34]" : "text-[#a6a6a6]"
+                      )}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {open && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-6 pb-5 leading-relaxed text-[#a6a6a6]">{item.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+    </>
   );
 }

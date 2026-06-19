@@ -23,7 +23,7 @@ export default async function BlogDetailPage({
   return (
     <div className="pt-[calc(var(--nav-h)+48px)] pb-24">
       <Container className="max-w-3xl">
-        <Link href="/blogs" className="mb-10 inline-flex items-center gap-2 text-[#8a8a8a] hover:text-[#f5f5f5]">
+        <Link href="/blog" className="mb-10 inline-flex items-center gap-2 text-[#a6a6a6] hover:text-white">
           <ArrowLeft className="h-4 w-4" />
           Back to Blog
         </Link>

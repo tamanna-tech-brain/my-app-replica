@@ -1,14 +1,51 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Google Sans Flex";
+  src: url("https://fonts.gstatic.com/s/googlesansflex/v19/t5sJIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwInycYAJzz0m7kJ4qFQOJBOjLvDSndo0SKMpKSTzwliVdHAy4bxTDHg_ugnAakp_mbyc5qU4LBMUM.woff2")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Google Sans Flex";
+  src: url("https://fonts.gstatic.com/s/googlesansflex/v19/t5sJIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwInycYAJzz0m7kJ4qFQOJBOjLvDSndo0SKMpKSTzwliVdHAy4bxTDHg_ugnAakpyycyc5qU4LBMUM.woff2")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Google Sans Flex";
+  src: url("https://fonts.gstatic.com/s/googlesansflex/v19/t5sJIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwInycYAJzz0m7kJ4qFQOJBOjLvDSndo0SKMpKSTzwliVdHAy4bxTDHg_ugnAakp0ucyc5qU4LBMUM.woff2")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("https://fonts.gstatic.com/s/unbounded/v12/Yq6F-LOTXCb04q32xlpat-6uR42XTqtG68b204jHgP6LR0Y.woff2")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+}
+
 @theme {
-  --color-bg: #000000;
-  --color-text: #f5f5f5;
-  --color-muted: #8a8a8a;
-  --color-lime: #c9ff37;
-  --color-purple: #7c3aed;
-  --color-cyan: #70e1f5;
-  --color-pink: #e6a9f5;
-  --font-sans: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --color-bg: #151515;
+  --color-text: #ffffff;
+  --color-muted: #a6a6a6;
+  --color-lime: #c6ff34;
+  --color-purple: #7e3bed;
+  --color-cyan: #66f7ff;
+  --color-pink: #f7aaff;
+  --font-sans: "Google Sans Flex", "Inter", system-ui, sans-serif;
+  --font-display: "Unbounded", "Google Sans Flex", sans-serif;
 }
 
 :root {
@@ -22,8 +59,8 @@ html {
 
 html,
 body {
-  background: #000000;
-  color: #f5f5f5;
+  background: #151515;
+  color: #ffffff;
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
@@ -44,17 +81,17 @@ body {
 }
 
 .hero-title {
+  font-family: var(--font-display);
   font-size: clamp(3rem, 8.5vw, 7.5rem);
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -0.05em;
 }
 
-/* Notched badge — ticket-stub corners */
 .notch-badge {
   position: relative;
   border: 1px solid;
-  background: #000;
+  background: #151515;
   clip-path: polygon(
     8px 0,
     calc(100% - 8px) 0,
@@ -67,7 +104,6 @@ body {
   );
 }
 
-/* Stepped corner for speaker/sponsor cards */
 .step-corner {
   position: relative;
 }
@@ -85,9 +121,8 @@ body {
   z-index: 2;
 }
 
-/* Lime stepped speaker backdrop */
 .speaker-step-bg {
-  background: #d9ff66;
+  background: #e6ff94;
   clip-path: polygon(
     0 12px,
     12px 12px,
@@ -104,7 +139,6 @@ body {
   );
 }
 
-/* Stat pill cards */
 .stat-pill {
   border-radius: 999px;
   padding: 2.5rem 2rem;
@@ -112,12 +146,12 @@ body {
 }
 
 .stat-pill-cyan {
-  background: #70e1f5;
+  background: #66f7ff;
   color: #000;
 }
 
 .stat-pill-lime {
-  background: #e2ff8d;
+  background: #e6ff94;
   color: #000;
 }
 
@@ -126,7 +160,6 @@ body {
   color: #000;
 }
 
-/* Ticket card top notch */
 .ticket-card {
   position: relative;
   background: #fff;
@@ -146,7 +179,6 @@ body {
     radial-gradient(circle at 12px 0, transparent 11px, #fff 12px) 0 0 / 24px 24px repeat-x;
 }
 
-/* Pricing / ticket scalloped top */
 .scallop-top {
   position: relative;
 }
@@ -162,7 +194,7 @@ body {
 }
 
 .glass-menu {
-  background: #222222;
+  background: #282828;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
 }
@@ -179,22 +211,22 @@ body {
 }
 
 .date-pill-lime {
-  background: #d9ff3f;
+  background: #c6ff34;
   color: #000;
 }
 
 .date-pill-cyan {
-  background: #5defff;
+  background: #66f7ff;
   color: #000;
 }
 
 .date-pill-pink {
-  background: #e6a9f5;
+  background: #f7aaff;
   color: #000;
 }
 
 .dots-grid {
-  background-image: radial-gradient(circle, rgba(139, 61, 255, 0.45) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(circle, rgba(126, 59, 237, 0.45) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
 }
 
@@ -217,13 +249,13 @@ input,
 textarea {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f5f5f5;
+  color: #ffffff;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: rgba(124, 58, 237, 0.6);
+  border-color: rgba(126, 59, 237, 0.6);
 }
 
 .section-label {
@@ -232,11 +264,11 @@ textarea:focus {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #8a8a8a;
+  color: #a6a6a6;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #f97316, #ec4899, #3b82f6);
+  background: linear-gradient(90deg, #ffbe1d, #df26d2, #1070fc);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -247,7 +279,7 @@ textarea:focus {
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
-  background: #c9ff37;
+  background: #c6ff34;
   padding: 0.875rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 700;
@@ -256,7 +288,7 @@ textarea:focus {
 }
 
 .btn-lime:hover {
-  box-shadow: 0 0 30px rgba(201, 255, 55, 0.35);
+  box-shadow: 0 0 30px rgba(198, 255, 52, 0.35);
 }
 
 .btn-purple {
@@ -264,7 +296,7 @@ textarea:focus {
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
-  background: #7c3aed;
+  background: #7e3bed;
   padding: 0.875rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 700;
@@ -273,22 +305,21 @@ textarea:focus {
 }
 
 .btn-purple:hover {
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.35);
+  box-shadow: 0 0 30px rgba(126, 59, 237, 0.35);
 }
 
 .ticket-strip {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
-  background: #0a0a0a;
+  background: #0f0019;
 }
 
-/* Agenda session arc */
 .session-arc {
   position: relative;
   width: 88px;
   height: 88px;
   border-radius: 50%;
-  background: conic-gradient(from 200deg, #7c3aed, #ff1cc8, #f97316, transparent 65%);
+  background: conic-gradient(from 200deg, #7e3bed, #df26d2, #ffbe1d, transparent 65%);
 }
 
 .session-arc::after {
@@ -296,10 +327,9 @@ textarea:focus {
   position: absolute;
   inset: 6px;
   border-radius: 50%;
-  background: #000;
+  background: #151515;
 }
 
-/* Gallery organic shapes */
 .gallery-blob {
   clip-path: polygon(
     30% 0%,
@@ -330,7 +360,6 @@ textarea:focus {
   );
 }
 
-/* Sponsor grid cell */
 .sponsor-cell {
   position: relative;
   display: flex;
@@ -339,6 +368,7 @@ textarea:focus {
   min-height: 140px;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
 }
 
 .sponsor-cell::before {
@@ -352,7 +382,6 @@ textarea:focus {
   border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* FAQ accordion */
 .faq-item {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
@@ -361,11 +390,18 @@ textarea:focus {
 }
 
 .faq-item-open {
-  border-color: rgba(124, 58, 237, 0.35);
+  border-color: rgba(126, 59, 237, 0.35);
   background: rgba(255, 255, 255, 0.02);
 }
 
-/* CTA gradient banner */
 .cta-banner {
-  background: linear-gradient(135deg, #7c3aed 0%, #ff1cc8 45%, #f97316 100%);
+  background: linear-gradient(135deg, #7e3bed 0%, #df26d2 45%, #ffbe1d 100%);
+}
+
+.page-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }

@@ -18,7 +18,7 @@ export default function BlogsPage() {
           {BLOG_POSTS.map((post) => (
             <Link
               key={post.id}
-              href={`/blogs/${post.id}`}
+              href={`/blog/${post.id}`}
               className="group overflow-hidden rounded-[28px] border border-white/10 bg-[#111] transition-transform hover:-translate-y-1"
             >
               <div className="relative aspect-[16/10] overflow-hidden">

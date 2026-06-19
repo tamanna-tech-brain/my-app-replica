@@ -13,7 +13,7 @@ const SOCIAL = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black">
+    <footer className="border-t border-white/10 bg-[#151515]">
       <Container>
         <div className="grid border-b border-white/10 md:grid-cols-12">
           <div className="border-b border-white/10 py-12 md:col-span-4 md:border-b-0 md:border-r md:py-16">

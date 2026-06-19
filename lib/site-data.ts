@@ -1,3 +1,5 @@
+import { ASSETS } from "./framer-assets";
+
 export const SITE = {
   name: "Config",
   email: "info@config.info",
@@ -11,18 +13,18 @@ export const HERO = {
   description: "AI relevant events. In person and online tickets now available",
   cta: "Register Now",
   ctaHref: "/tickets",
-  heroImage:
-    "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=720&h=900&auto=format&fit=crop",
+  heroImage: ASSETS.heroPortrait,
   previewImages: [
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=400&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=400&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&auto=format&fit=crop",
+    ASSETS.speakers.carlos,
+    ASSETS.speakers.didier,
+    ASSETS.speakers.jenna,
+    ASSETS.speakers.doug,
   ],
   datePills: [
     { dates: "05-07", month: "July", year: "2026", tone: "lime" as const, rotate: -8 },
     { dates: "05-07", month: "July", year: "2026", tone: "cyan" as const, rotate: 6 },
     { dates: "05-07", month: "July", year: "2026", tone: "pink" as const, rotate: -4 },
+    { dates: "05-07", month: "July", year: "2026", tone: "lime" as const, rotate: 3 },
   ],
 };
 
@@ -52,8 +54,7 @@ export const SPEAKERS: Speaker[] = [
     id: "carlos-mendoza",
     name: "Carlos Mendoza",
     role: "UX Researcher",
-    image:
-      "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=480&h=600&auto=format&fit=crop",
+    image: ASSETS.speakers.carlos,
     bio:
       "Carlos Mendoza is a UX Researcher focused on turning complex user behavior into clear, actionable insights. He works closely with product and design teams to uncover real user needs through interviews, usability testing, and data-driven research.",
   },
@@ -61,8 +62,7 @@ export const SPEAKERS: Speaker[] = [
     id: "didier-hilhorst",
     name: "Didier Hilhorst",
     role: "Vp of Design",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=480&h=600&auto=format&fit=crop",
+    image: ASSETS.speakers.didier,
     bio:
       "Didier Hilhorst leads design strategy at the intersection of AI and product experience, shaping human-centered intelligent systems.",
   },
@@ -70,8 +70,7 @@ export const SPEAKERS: Speaker[] = [
     id: "jenna-park",
     name: "Jenna Park",
     role: "Vp of Software",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=480&h=600&auto=format&fit=crop",
+    image: ASSETS.speakers.jenna,
     bio:
       "Jenna Park architects scalable software platforms and leads engineering teams building AI-first products.",
   },
@@ -79,8 +78,7 @@ export const SPEAKERS: Speaker[] = [
     id: "doug-gulgowski",
     name: "Doug Gulgowski",
     role: "Vp of AI",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=480&h=600&auto=format&fit=crop",
+    image: ASSETS.speakers.doug,
     bio:
       "Doug Gulgowski drives applied AI strategy, helping organizations deploy machine learning at enterprise scale.",
   },
@@ -88,8 +86,7 @@ export const SPEAKERS: Speaker[] = [
     id: "samantha-lee",
     name: "Samantha Lee",
     role: "Software Engineer",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=480&h=600&auto=format&fit=crop",
+    image: ASSETS.speakers.samantha,
     bio:
       "Samantha Lee builds production ML systems and open-source tools for the global developer community.",
   },
@@ -97,8 +94,7 @@ export const SPEAKERS: Speaker[] = [
     id: "boyd-volkman",
     name: "Boyd Volkman",
     role: "Marketing Specialist",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=480&h=600&auto=format&fit=crop",
+    image: ASSETS.speakers.boyd,
     bio:
       "Boyd Volkman crafts go-to-market strategies for AI products and growth-stage technology companies.",
   },
@@ -176,47 +172,12 @@ export const PRICING_PLANS = [
   },
 ];
 
-export const SPONSOR_NAMES = [
-  "Logoipsum",
-  "TechNova",
-  "LightAI",
-  "Kanba",
-  "NeuralNet",
-  "CloudScale",
-  "DataFlow",
-  "CreativeAI",
-  "SynthAI",
-  "DataPulse",
-  "NeuralCore",
-  "VisionAI",
-  "CloudNine",
-  "DeepLearn",
-  "AutoML",
-  "SmartSys",
-  "CodeAI",
-  "NextGen",
-  "OpenMind",
-  "FutureStack",
-];
+export const SPONSOR_LOGOS = ASSETS.sponsorLogos;
 
-export const GALLERY_IMAGES = [
-  {
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=640&h=800&auto=format&fit=crop",
-    alt: "Conference keynote",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=640&h=800&auto=format&fit=crop",
-    alt: "Panel discussion",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1523580494112-071dcb849766?w=640&h=800&auto=format&fit=crop",
-    alt: "Workshop session",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=640&h=800&auto=format&fit=crop",
-    alt: "Networking lounge",
-  },
-];
+export const GALLERY_IMAGES = ASSETS.gallery.map((src, i) => ({
+  src,
+  alt: `Event gallery image ${i + 1}`,
+}));
 
 export const FAQ_ITEMS = [
   {
@@ -241,6 +202,98 @@ export const FAQ_ITEMS = [
   },
 ];
 
+export const TICKETS_FAQ = [
+  {
+    q: "What's included in my ticket?",
+    a: "Tickets include access to keynotes, sessions, networking events, and digital resources depending on your pass type.",
+  },
+  {
+    q: "Are there different ticket types?",
+    a: "Yes. We offer in-person and virtual passes, each with tailored access and benefits.",
+  },
+  {
+    q: "Can I upgrade my ticket later?",
+    a: "Yes. Contact support to upgrade from online to in-person before the event begins.",
+  },
+  {
+    q: "Do you offer group discounts?",
+    a: "Yes. Groups of 5 or more receive discounted rates. Email info@config.info for details.",
+  },
+  {
+    q: "Is my ticket refundable?",
+    a: "Refunds are available within 30 days of purchase. See our refund policy for details.",
+  },
+];
+
+export const ABOUT_PAGE = {
+  badge: "About Event",
+  title: "Redefining What's possible with AI",
+  location: "San Francisco, CA and Online",
+  date: "Monday, March 16, 2024",
+  time: "09:00 AM - 05:00 PM PST",
+  description:
+    "This is more than a conference it's a launchpad for the next generation of AI builders. Learn from industry pioneers, gain practical insights, and collaborate with makers driving the intelligent revolution.",
+  bullets: [
+    "Curated Professional Networking Sessions",
+    "Invite-Only Strategic Professional Insights",
+  ],
+  scheduleTitle: "Global AI agenda",
+  teamMembers: [
+    { name: "Viola Stracke", role: "Vp of AI", image: ASSETS.about.team[0] },
+    { name: "Silvia Kozey", role: "Our Sponsors", image: ASSETS.about.team[1] },
+    { name: "Lula Hettinger", role: "Head of AI enginner", image: ASSETS.about.team[2] },
+    { name: "Boyd Volkman", role: "Vp of design", image: ASSETS.about.team[3] },
+  ],
+};
+
+export const AGENDA_DAYS = [
+  {
+    id: "day-1",
+    title: "The Future of Applied AI",
+    date: "Sunday - 26 July 2026",
+    items: [
+      "9:30 AM - 10:00 AM, Registration Open",
+      "10:00 AM - 10:45 AM, Cloude AI Opening Keynote",
+      "10:45 AM - 11:45 PM, Cloude AI Opening Keynote",
+      "11:45 AM - 12:15 PM, Lunch",
+      "3:00 PM - 3:45 PM, AutoIndustry.Keynote Address",
+      "5:30 PM - 7:30 PM, Opening Night Reception in the Lobby",
+    ],
+    duration: "09:00 AM – 09:45 AM",
+    durationLabel: "45 Minutes",
+  },
+  {
+    id: "day-2",
+    title: "Building with Generative AI",
+    date: "Monday - 27 July 2026",
+    items: [
+      "9:30 AM - 10:00 AM, Register, Dine & Go Live",
+      "10:00 AM - 10:45 AM, Main Stage Welcome, Keynote and Panels",
+      "10:45 AM - 11:45 PM, Exhibit Hall Open",
+      "11:45 AM - 12:15 PM, Pitch Tank Prelims, Podcast Stage",
+      "3:00 PM - 3:45 PM, Main Stage Panels and Keynotes",
+      "5:30 PM - 7:30 PM, Night 1 Happy Hour",
+    ],
+    duration: "09:00 AM – 09:45 AM",
+    durationLabel: "45 Minutes",
+  },
+  {
+    id: "day-3",
+    title: "AI Startups That Scaled Fast",
+    date: "Sunday - 26 July 2026",
+    items: [
+      "9:30 AM - 10:00 AM, Register, Dine & Go Live",
+      "10:00 AM - 10:45 AM, Main Stage Mini Greenfield",
+      "10:45 AM - 11:45 PM, Exhibit Hall Open",
+      "11:45 AM - 12:15 PM, Breakout Sessions",
+      "3:00 PM - 3:45 PM, Breakout Sessions",
+      "5:30 PM - 7:30 PM, Giveaway & Keynote",
+    ],
+    duration: "09:00 AM – 09:45 AM",
+    durationLabel: "45 Minutes",
+  },
+];
+
 export type BlogPost = {
   id: string;
   title: string;
@@ -258,8 +311,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "AI Trends",
     readTime: "5 Min read",
     author: "Dean O'Hara",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&auto=format&fit=crop",
+    image: ASSETS.blog.future,
     excerpt:
       "Artificial Intelligence is no longer a distant concept — it's actively shaping how we work, design, and innovate.",
   },
@@ -269,8 +321,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Product Strategy",
     readTime: "6 Min read",
     author: "Dean O'Hara",
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=500&auto=format&fit=crop",
+    image: ASSETS.blog.vision,
     excerpt: "Learn how to integrate AI into your product strategy and create seamless user experiences.",
   },
   {
@@ -279,8 +330,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "AI Ethics",
     readTime: "7 Min read",
     author: "Dean O'Hara",
-    image:
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=500&auto=format&fit=crop",
+    image: ASSETS.blog.human,
     excerpt: "Discover best practices for building ethical, human-centered AI products.",
   },
   {
@@ -289,8 +339,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Product Strategy",
     readTime: "8 Min read",
     author: "Dean O'Hara",
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&auto=format&fit=crop",
+    image: ASSETS.blog.autonomous,
     excerpt: "Explore how autonomous technology is reshaping industries worldwide.",
   },
 ];

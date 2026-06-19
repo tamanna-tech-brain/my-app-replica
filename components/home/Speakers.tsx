@@ -45,7 +45,7 @@ function SpeakerCard({
 
 export default function Speakers() {
   return (
-    <section id="speakers" className="section-border bg-black section-y">
+    <section id="speakers" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="mb-14 text-center">
           <NotchBadge borderColor="border-[#d9ff3f]" className="mb-6">

@@ -14,7 +14,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(1);
 
   return (
-    <section id="faq" className="section-border bg-black section-y">
+    <section id="faq" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <NotchBadge borderColor="border-[#70e1f5]" className="mb-6">

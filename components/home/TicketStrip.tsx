@@ -4,7 +4,7 @@ import { TICKET_STRIP } from "@/lib/site-data";
 
 export default function TicketStrip() {
   return (
-    <section id="ticket" className="section-border bg-black py-16 md:py-20">
+    <section id="ticket" className="section-border bg-[#151515] py-16 md:py-20">
       <Container>
         <div className="flex justify-center">
           <Link

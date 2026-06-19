@@ -1,221 +1,121 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-
-const TEAM = [
-  {
-    name: "Alex Rivera",
-    role: "Event Director",
-    img: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=400&h=500&auto=format&fit=crop",
-  },
-  {
-    name: "Jordan Smith",
-    role: "Head of Operations",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&auto=format&fit=crop",
-  },
-  {
-    name: "Casey Lin",
-    role: "Curator",
-    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&auto=format&fit=crop",
-  },
-  {
-    name: "Taylor Reed",
-    role: "Community Lead",
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&auto=format&fit=crop",
-  },
-];
-
-function CountUp({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target]);
-
-  return (
-    <span ref={ref}>
-      {count.toLocaleString()}
-      {suffix}
-    </span>
-  );
-}
-
-const STATS = [
-  { value: 5000, suffix: "+", label: "Attendees" },
-  { value: 120, suffix: "+", label: "Speakers" },
-  { value: 75, suffix: "+", label: "Sessions" },
-  { value: 50, suffix: "+", label: "Partners" },
-];
+import Link from "next/link";
+import { MapPin, Clock, Calendar } from "lucide-react";
+import Container from "@/components/ui/Container";
+import NotchBadge from "@/components/ui/NotchBadge";
+import SplitButton from "@/components/ui/SplitButton";
+import AboutSummit from "@/components/home/AboutSummit";
+import Agenda from "@/components/home/Agenda";
+import Sponsors from "@/components/home/Sponsors";
+import PreRegisterSection from "@/components/PreRegisterSection";
+import { ABOUT_PAGE } from "@/lib/site-data";
+import { ASSETS } from "@/lib/framer-assets";
 
 export default function AboutPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const parallaxY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
   return (
-    <div className="pt-[140px] pb-24 min-h-screen" ref={containerRef}>
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-        {/* Hero */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center max-w-4xl mx-auto mb-24 md:mb-32"
-        >
-          <div className="tag-lime mb-6 mx-auto">ABOUT US</div>
-          <h1 className="text-6xl md:text-[80px] lg:text-[100px] font-black tracking-tight text-white leading-[1.1] mb-8">
-            Shaping the <span className="gradient-text">Future</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-[#A1A1AA] leading-relaxed">
-            Config Summit is the definitive global gathering for technology
-            leaders, visionaries, and makers who are building tomorrow&apos;s
-            world today.
-          </p>
-        </motion.div>
+    <>
+      <section className="section-border bg-[#151515] pt-[calc(var(--nav-h)+48px)] pb-16 md:pb-24">
+        <Container>
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <NotchBadge borderColor="border-[#66f7ff]" className="mb-8">
+                {ABOUT_PAGE.badge}
+              </NotchBadge>
+              <h1 className="page-hero-title text-white">{ABOUT_PAGE.title}</h1>
 
-        {/* Parallax Image Block */}
-        <div className="w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden relative border border-[#252525] mb-24 md:mb-32">
-          <motion.div
-            style={{ y: parallaxY }}
-            className="absolute -inset-[10%] w-[120%] h-[120%]"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&h=900&auto=format&fit=crop"
-              alt="Conference Audience"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-[#070707]/50" />
-          </motion.div>
-        </div>
+              <div className="mt-8 space-y-3 text-sm text-[#a6a6a6]">
+                <p className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-[#7e3bed]" />
+                  {ABOUT_PAGE.location}
+                </p>
+                <p className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-[#7e3bed]" />
+                  {ABOUT_PAGE.date}
+                </p>
+                <p className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-[#7e3bed]" />
+                  {ABOUT_PAGE.time}
+                </p>
+              </div>
 
-        {/* Story, Mission, Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 mb-24 md:mb-32">
-          {[
-            {
-              title: "Our Story",
-              text: "Founded in 2020, Config started as a small meetup for makers. Today, it has grown into a global movement connecting thousands of professionals across industries.",
-            },
-            {
-              title: "Our Mission",
-              text: "To democratize access to cutting-edge technology insights and foster a collaborative environment where innovation can thrive without boundaries.",
-            },
-            {
-              title: "Our Vision",
-              text: "We envision a future where technology serves humanity better, built by a diverse community of creators united by shared knowledge and purpose.",
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="p-8 rounded-3xl bg-white/[0.02] border border-[#252525] hover:border-[#333] transition-colors"
-            >
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {item.title}
-              </h3>
-              <p className="text-[#A1A1AA] leading-relaxed">{item.text}</p>
-            </motion.div>
-          ))}
-        </div>
+              <p className="mt-8 max-w-xl text-base leading-relaxed text-[#a6a6a6] md:text-lg">
+                {ABOUT_PAGE.description}
+              </p>
 
-        {/* Statistics */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-[#252525] rounded-3xl overflow-hidden mb-24 md:mb-32"
-        >
-          {STATS.map((stat, i) => (
-            <div
-              key={stat.label}
-              className={`flex flex-col items-center justify-center py-12 px-4
-                ${i !== 3 ? "md:border-r border-[#252525]" : ""}
-                ${i % 2 === 0 ? "border-r md:border-r-0 border-[#252525]" : ""}
-                ${i < 2 ? "border-b md:border-b-0 border-[#252525]" : ""}
-                hover:bg-white/[0.02] transition-colors duration-300`}
-            >
-              <span className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">
-                <CountUp target={stat.value} suffix={stat.suffix} />
-              </span>
-              <span className="text-sm uppercase tracking-wider text-[#7C3AED] font-bold">
-                {stat.label}
-              </span>
+              <ul className="mt-8 space-y-3">
+                {ABOUT_PAGE.bullets.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-[#a6a6a6]">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c6ff34]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10">
+                <SplitButton href="/tickets" variant="purple">
+                  Register Now
+                </SplitButton>
+              </div>
             </div>
-          ))}
-        </motion.div>
 
-        {/* Team Section */}
-        <div className="mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
-              Meet the <span className="gradient-text">Team</span>
-            </h2>
-            <p className="text-[#A1A1AA] text-lg max-w-2xl mx-auto">
-              The passionate individuals working behind the scenes to make Config
-              an unforgettable experience.
-            </p>
-          </motion.div>
+            <div className="relative aspect-[4/5] overflow-hidden border border-white/10">
+              <Image
+                src={ASSETS.about.hero}
+                alt="About Config summit"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width:768px) 100vw, 50vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-[#7e3bed]/30 mix-blend-color" />
+            </div>
+          </div>
+        </Container>
+      </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TEAM.map((member, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="group relative rounded-3xl overflow-hidden border border-[#252525] aspect-[3/4] cursor-pointer"
+      <AboutSummit />
+
+      <section className="section-border bg-[#151515] section-y">
+        <Container>
+          <div className="mb-12 text-center">
+            <NotchBadge borderColor="border-[#c6ff34]" className="mb-6">
+              Event schedule
+            </NotchBadge>
+            <h2 className="text-4xl font-bold text-white md:text-5xl">{ABOUT_PAGE.scheduleTitle}</h2>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {ABOUT_PAGE.teamMembers.map((member) => (
+              <article
+                key={member.name}
+                className="rounded-[24px] border border-white/10 bg-[#0f0019] p-6 md:p-8"
               >
-                <Image
-                  src={member.img}
-                  alt={member.name}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-[#070707]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="text-xl font-bold text-white mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-[#7C3AED] text-sm font-medium">
-                    {member.role}
-                  </p>
+                <div className="flex gap-5">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/10">
+                    <Image src={member.image} alt={member.name} fill className="object-cover" sizes="80px" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">{member.name}</h3>
+                    <p className="text-sm text-[#a6a6a6]">{member.role}</p>
+                  </div>
                 </div>
-              </motion.div>
+              </article>
             ))}
           </div>
-        </div>
-      </div>
-    </div>
+
+          <div className="mt-10 text-center">
+            <Link href="/agenda" className="text-sm font-bold text-[#c6ff34] hover:text-white">
+              View full agenda →
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      <Agenda />
+      <Sponsors />
+      <PreRegisterSection />
+    </>
   );
 }
