@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Container from "@/components/ui/Container";
-import NotchBadge from "@/components/ui/NotchBadge";
 import SplitButton from "@/components/ui/SplitButton";
 import { SPONSOR_LOGOS } from "@/lib/site-data";
 
 export default function Sponsors() {
+  /* Reference shows a 3-column × 2-row grid with 6 logos */
+  const displayLogos = SPONSOR_LOGOS.slice(0, 6);
+
   return (
     <section id="sponsors" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="mb-14 text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-7xl">
             Official Elite Sponsor
           </h2>
           <div className="mt-8 flex justify-center">
@@ -19,15 +21,15 @@ export default function Sponsors() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 border-t border-l border-white/10 md:grid-cols-4">
-          {SPONSOR_LOGOS.map((src, i) => (
+        <div className="grid grid-cols-2 border-t border-l border-white/10 md:grid-cols-3">
+          {displayLogos.map((src, i) => (
             <div key={i} className="sponsor-cell">
               <Image
                 src={src}
                 alt={`Sponsor logo ${i + 1}`}
                 width={200}
                 height={60}
-                className="max-h-12 w-auto object-contain opacity-70 transition-opacity hover:opacity-100"
+                className="max-h-12 w-auto object-contain opacity-60 transition-opacity hover:opacity-100"
               />
             </div>
           ))}

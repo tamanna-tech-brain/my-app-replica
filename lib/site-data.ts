@@ -150,7 +150,7 @@ export const SESSIONS = [
 export const PRICING_PLANS = [
   {
     name: "In-Person Pass",
-    price: "$0",
+    price: "$299",
     features: [
       "Full conference access",
       "All keynotes & sessions",
@@ -161,7 +161,7 @@ export const PRICING_PLANS = [
   },
   {
     name: "Online Pass",
-    price: "$0",
+    price: "$999",
     features: [
       "Live session streaming",
       "Virtual workshops",

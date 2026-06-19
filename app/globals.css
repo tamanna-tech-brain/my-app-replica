@@ -28,12 +28,39 @@
 }
 
 @font-face {
+  font-family: "Google Sans Flex";
+  src: url("https://fonts.gstatic.com/s/googlesansflex/v19/t5sJIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwInycYAJzz0m7kJ4qFQOJBOjLvDSndo0SKMpKSTzwliVdHAy4bxTDHg_ugnAakp2Kcyc5qU4LBMUM.woff2")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
   font-family: "Unbounded";
   src: url("https://fonts.gstatic.com/s/unbounded/v12/Yq6F-LOTXCb04q32xlpat-6uR42XTqtG68b204jHgP6LR0Y.woff2")
     format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 600;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("https://fonts.gstatic.com/s/unbounded/v12/Yq6F-LOTXCb04q32xlpat-6uR42XTqtG6__204jHgP6LR0Y.woff2")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Unbounded";
+  src: url("https://fonts.gstatic.com/s/unbounded/v12/Yq6F-LOTXCb04q32xlpat-6uR42XTqtG67H204jHgP6LR0Y.woff2")
+    format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 900;
 }
 
 @theme {
@@ -80,14 +107,16 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* ── Hero ─────────────────────────────────── */
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(3rem, 8.5vw, 7.5rem);
-  font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.05em;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
 }
 
+/* ── Notch Badge ──────────────────────────── */
 .notch-badge {
   position: relative;
   border: 1px solid;
@@ -104,68 +133,59 @@ body {
   );
 }
 
-.step-corner {
-  position: relative;
-}
-
-.step-corner::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-  z-index: 2;
-}
-
+/* ── Speaker Step Background ──────────────── */
 .speaker-step-bg {
   background: #e6ff94;
   clip-path: polygon(
-    0 12px,
-    12px 12px,
-    12px 0,
-    calc(100% - 12px) 0,
-    calc(100% - 12px) 12px,
-    100% 12px,
-    100% calc(100% - 12px),
-    calc(100% - 12px) calc(100% - 12px),
-    calc(100% - 12px) 100%,
-    12px 100%,
-    12px calc(100% - 12px),
-    0 calc(100% - 12px)
+    0 24px,
+    24px 24px,
+    24px 0,
+    calc(100% - 24px) 0,
+    calc(100% - 24px) 24px,
+    100% 24px,
+    100% calc(100% - 24px),
+    calc(100% - 24px) calc(100% - 24px),
+    calc(100% - 24px) 100%,
+    24px 100%,
+    24px calc(100% - 24px),
+    0 calc(100% - 24px)
   );
 }
 
+/* ── Stat Pills ───────────────────────────── */
 .stat-pill {
   border-radius: 999px;
   padding: 2.5rem 2rem;
   text-align: center;
+  border: 3px solid transparent;
 }
 
 .stat-pill-cyan {
   background: #66f7ff;
   color: #000;
+  border-color: #f7aaff;
 }
 
 .stat-pill-lime {
   background: #e6ff94;
   color: #000;
+  border-color: #c6ff34;
 }
 
 .stat-pill-white {
   background: #ffffff;
   color: #000;
+  border-color: #f7aaff;
 }
 
+/* ── Ticket Card ──────────────────────────── */
 .ticket-card {
   position: relative;
-  background: #fff;
+  background: #f5f5f5;
   color: #000;
   border-radius: 0 0 24px 24px;
   padding: 2.5rem 2rem 2rem;
+  border: 1px solid rgba(126, 59, 237, 0.2);
 }
 
 .ticket-card::before {
@@ -176,29 +196,32 @@ body {
   right: 0;
   height: 24px;
   background:
-    radial-gradient(circle at 12px 0, transparent 11px, #fff 12px) 0 0 / 24px 24px repeat-x;
+    radial-gradient(circle at 12px 0, transparent 11px, #f5f5f5 12px) 0 0 / 24px 24px repeat-x;
 }
 
-.scallop-top {
-  position: relative;
+.ticket-includes-line {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.scallop-top::before {
+.ticket-includes-line::after {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 16px;
-  background: radial-gradient(circle at 10px 0, transparent 9px, currentColor 10px) 0 0 / 20px 16px repeat-x;
+  flex: 1;
+  height: 1px;
+  background: #000;
 }
 
+/* ── Glass Menu (Dropdown) ────────────────── */
 .glass-menu {
   background: #282828;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
 }
 
+/* ── Date Pills ───────────────────────────── */
 .date-pill {
   border-radius: 999px;
   padding: 16px 24px;
@@ -225,11 +248,13 @@ body {
   color: #000;
 }
 
+/* ── Dots Grid ────────────────────────────── */
 .dots-grid {
   background-image: radial-gradient(circle, rgba(126, 59, 237, 0.45) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
 }
 
+/* ── Noise Overlay ────────────────────────── */
 .noise-overlay {
   pointer-events: none;
   position: fixed;
@@ -239,12 +264,14 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
+/* ── Nav Dot Separator ────────────────────── */
 .nav-dot::before {
   content: "·";
   margin-right: 1rem;
   color: rgba(255, 255, 255, 0.25);
 }
 
+/* ── Form Inputs ──────────────────────────── */
 input,
 textarea {
   background: rgba(255, 255, 255, 0.03);
@@ -258,6 +285,7 @@ textarea:focus {
   border-color: rgba(126, 59, 237, 0.6);
 }
 
+/* ── Section Label ────────────────────────── */
 .section-label {
   display: inline-block;
   font-size: 11px;
@@ -267,6 +295,7 @@ textarea:focus {
   color: #a6a6a6;
 }
 
+/* ── Gradient Text ────────────────────────── */
 .gradient-text {
   background: linear-gradient(90deg, #ffbe1d, #df26d2, #1070fc);
   -webkit-background-clip: text;
@@ -274,6 +303,7 @@ textarea:focus {
   color: transparent;
 }
 
+/* ── Buttons ──────────────────────────────── */
 .btn-lime {
   display: inline-flex;
   align-items: center;
@@ -308,12 +338,65 @@ textarea:focus {
   box-shadow: 0 0 30px rgba(126, 59, 237, 0.35);
 }
 
+.btn-gradient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #7e3bed 0%, #df26d2 50%, #ffbe1d 100%);
+  padding: 1.125rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  width: 100%;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+}
+
+/* ── Ticket Strip ─────────────────────────── */
 .ticket-strip {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   background: #0f0019;
 }
 
+/* ── Pink Ticket Shape ────────────────────── */
+.pink-ticket {
+  position: relative;
+  background: #f7aaff;
+  color: #000;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  /* Scalloped edges via mask */
+  mask-image:
+    radial-gradient(circle at 0 50%, transparent 10px, black 10.5px),
+    radial-gradient(circle at 100% 50%, transparent 10px, black 10.5px);
+  mask-size: 51% 100%;
+  mask-position: left, right;
+  mask-repeat: no-repeat;
+  -webkit-mask-image:
+    radial-gradient(circle at 0 50%, transparent 10px, black 10.5px),
+    radial-gradient(circle at 100% 50%, transparent 10px, black 10.5px);
+  -webkit-mask-size: 51% 100%;
+  -webkit-mask-position: left, right;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.pink-ticket-border {
+  position: absolute;
+  inset: 0;
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+/* ── Session Arc ──────────────────────────── */
 .session-arc {
   position: relative;
   width: 88px;
@@ -330,6 +413,7 @@ textarea:focus {
   background: #151515;
 }
 
+/* ── Gallery Shapes ───────────────────────── */
 .gallery-blob {
   clip-path: polygon(
     30% 0%,
@@ -360,15 +444,16 @@ textarea:focus {
   );
 }
 
+/* ── Sponsor Grid Cell ────────────────────── */
 .sponsor-cell {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 140px;
+  min-height: 180px;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .sponsor-cell::before {
@@ -376,17 +461,29 @@ textarea:focus {
   position: absolute;
   top: 12px;
   left: 12px;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.sponsor-cell::after {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ── FAQ ──────────────────────────────────── */
 .faq-item {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition: border-color 0.3s, background 0.3s;
 }
 
 .faq-item-open {
@@ -394,14 +491,80 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.02);
 }
 
+/* ── CTA Banner ───────────────────────────── */
 .cta-banner {
   background: linear-gradient(135deg, #7e3bed 0%, #df26d2 45%, #ffbe1d 100%);
 }
 
+/* ── Page Hero Title ──────────────────────── */
 .page-hero-title {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.04em;
+}
+
+/* ── Footer Container ─────────────────────── */
+.footer-bordered {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+}
+
+/* ── Gradient Decorative Shape ────────────── */
+.gradient-decor {
+  background: linear-gradient(135deg, #ff4500, #ff1cc8, #1070fc);
+  border-radius: 4px;
+}
+
+/* ── Scallop Top Pattern ──────────────────── */
+.scallop-top {
+  position: relative;
+}
+
+.scallop-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: radial-gradient(circle at 10px 0, transparent 9px, currentColor 10px) 0 0 / 20px 16px repeat-x;
+}
+
+/* ── Step Corner ──────────────────────────── */
+.step-corner {
+  position: relative;
+}
+
+.step-corner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  z-index: 2;
+}
+
+/* ── Marquee Animation ────────────────────── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* ── Purple 4-point Star Icon ─────────────── */
+.star-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #7e3bed;
+  font-size: 1rem;
 }

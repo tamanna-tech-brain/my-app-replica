@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import Container from "@/components/ui/Container";
+import NotchBadge from "@/components/ui/NotchBadge";
 import { ABOUT_STATS } from "@/lib/site-data";
 import { cn } from "@/lib/cn";
 
@@ -37,16 +38,13 @@ export default function AboutSummit() {
   return (
     <section id="about-summit" className="section-border bg-[#151515] section-y">
       <Container>
-        <div className="mb-10 flex gap-6">
-          <Link href="/about" className="text-sm text-[#8a8a8a] hover:text-white">
-            About
-          </Link>
-          <Link href="/agenda" className="text-sm text-[#8a8a8a] hover:text-white">
-            Agenda
-          </Link>
+        <div className="mb-10 flex justify-center">
+          <NotchBadge borderColor="border-[#c6ff34]" className="mb-6">
+            About Agenda
+          </NotchBadge>
         </div>
 
-        <h2 className="max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+        <h2 className="mx-auto max-w-4xl text-center text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
           The Definitive AI Relevant Summit
         </h2>
 

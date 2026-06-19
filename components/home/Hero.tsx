@@ -19,11 +19,16 @@ const PILL_POS = [
 export default function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden bg-[#151515] pt-[var(--nav-h)]">
+      {/* Orange/red gradient blob - bottom left */}
       <div className="absolute bottom-0 left-0 h-[420px] w-[420px] rounded-full bg-gradient-to-tr from-[#ff4500]/30 via-[#ff1cc8]/15 to-transparent blur-[100px]" />
+      {/* Blue gradient blob - bottom right */}
+      <div className="absolute bottom-[10%] right-[5%] h-[300px] w-[300px] rounded-full bg-gradient-to-bl from-[#1070fc]/20 via-[#7e3bed]/10 to-transparent blur-[80px]" />
+      {/* Purple dot grid */}
       <div className="absolute bottom-[18%] left-[28%] h-48 w-64 dots-grid opacity-40" />
 
       <Container className="relative z-10 pt-12 pb-10 md:pt-16">
         <div className="grid items-end gap-10 lg:grid-cols-12">
+          {/* Left column - Heading */}
           <div className="lg:col-span-7">
             <NotchBadge borderColor="border-[#70e1f5]" className="mb-8">
               <MapPin className="h-3.5 w-3.5 text-[#70e1f5]" />
@@ -37,6 +42,7 @@ export default function Hero() {
             </h1>
           </div>
 
+          {/* Right column - Description + CTA */}
           <div className="flex flex-col gap-8 lg:col-span-5 lg:pb-4">
             <p className="max-w-sm text-base leading-relaxed text-[#a1a1aa] md:text-lg">
               {HERO.description}
@@ -47,7 +53,9 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Image area */}
         <div className="relative mt-12 min-h-[380px] md:mt-16 md:min-h-[520px]">
+          {/* Small preview speaker images - bottom left */}
           <div className="hidden md:block absolute bottom-0 left-0 z-10 h-[260px] w-[55%]">
             {HERO.previewImages.map((src, i) => (
               <motion.div
@@ -62,6 +70,7 @@ export default function Hero() {
             ))}
           </div>
 
+          {/* Main portrait image */}
           <div className="relative mx-auto w-full max-w-[400px] md:absolute md:right-0 md:top-0 md:mx-0 md:max-w-[480px]">
             <div className="relative aspect-[4/5] w-full overflow-hidden border border-white/10 bg-[#1a1030]">
               <Image
@@ -75,6 +84,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-[#7e3bed]/35 mix-blend-color" />
             </div>
 
+            {/* Floating date pills */}
             {HERO.datePills.map((pill, i) => (
               <motion.div
                 key={i}
@@ -94,6 +104,7 @@ export default function Hero() {
             ))}
           </div>
 
+          {/* Mobile date pills */}
           <div className="mt-6 flex gap-3 overflow-x-auto pb-2 sm:hidden">
             {HERO.datePills.map((pill, i) => (
               <div

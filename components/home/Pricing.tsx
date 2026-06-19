@@ -1,8 +1,22 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Check } from "lucide-react";
 import Container from "@/components/ui/Container";
 import NotchBadge from "@/components/ui/NotchBadge";
-import SplitButton from "@/components/ui/SplitButton";
 import { PRICING_PLANS } from "@/lib/site-data";
+
+function StarIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-1">
+      <path
+        d="M8 0L9.6 6.4L16 8L9.6 9.6L8 16L6.4 9.6L0 8L6.4 6.4L8 0Z"
+        fill="#7e3bed"
+      />
+    </svg>
+  );
+}
 
 export default function Pricing({ hideHeader }: { hideHeader?: boolean }) {
   return (
@@ -19,27 +33,32 @@ export default function Pricing({ hideHeader }: { hideHeader?: boolean }) {
           </div>
         )}
 
-        <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
           {PRICING_PLANS.map((plan) => (
             <article key={plan.name} className="ticket-card">
               <h3 className="text-xl font-bold md:text-2xl">{plan.name}</h3>
-              <p className="mt-6 text-5xl font-extrabold text-[#7e3bed] md:text-6xl">{plan.price}</p>
+              <p className="mt-6 text-5xl font-extrabold text-[#7e3bed] md:text-7xl">{plan.price}</p>
 
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.18em] text-[#8a8a8a]">Includes</p>
-              <ul className="mt-4 space-y-3">
+              <div className="ticket-includes-line">
+                <span className="text-lg font-bold">Includes</span>
+              </div>
+
+              <ul className="space-y-4">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm text-[#4a4a4a]">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#7c3aed]/10 text-[#7c3aed]">
-                      <Check className="h-3 w-3" />
-                    </span>
+                  <li key={feature} className="flex items-start gap-3 text-base text-[#333] md:text-lg">
+                    <StarIcon />
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <SplitButton href="/tickets" variant="purple" fullWidth className="mt-10 justify-center">
+              <Link
+                href="/tickets"
+                className="btn-gradient mt-10"
+              >
                 Reserve Ticket
-              </SplitButton>
+                <ArrowRight className="h-5 w-5" />
+              </Link>
             </article>
           ))}
         </div>

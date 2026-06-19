@@ -8,7 +8,7 @@ const variants: Record<Variant, string> = {
   lime: "bg-[#c6ff34] text-black hover:shadow-[0_0_30px_rgba(198,255,52,0.35)]",
   purple: "bg-[#7e3bed] text-white hover:shadow-[0_0_30px_rgba(126,59,237,0.35)]",
   gradient:
-    "bg-gradient-to-r from-[#ffbe1d] via-[#df26d2] to-[#1070fc] text-white hover:opacity-95",
+    "bg-gradient-to-r from-[#7e3bed] via-[#df26d2] to-[#ffbe1d] text-white hover:opacity-95",
 };
 
 export default function SplitButton({

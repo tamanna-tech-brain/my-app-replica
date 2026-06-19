@@ -17,26 +17,22 @@ function SpeakerCard({
 }) {
   const nameBlock = (
     <>
-      <h3 className="text-lg font-bold text-white md:text-xl">{speaker.name}</h3>
-      <p className="mt-1 text-sm text-[#8a8a8a]">{speaker.role}</p>
+      <h3 className="text-lg font-bold text-white md:text-xl lg:text-2xl">{speaker.name}</h3>
+      <p className="mt-1 text-sm text-[#8a8a8a] md:text-base">{speaker.role}</p>
     </>
   );
 
   return (
     <Link href={`/speakers/${speaker.id}`} className="group block">
       {textAbove && <div className="mb-4 text-center md:mb-5">{nameBlock}</div>}
-      <div className="step-corner relative mx-auto aspect-square w-full max-w-[280px] border border-white/10 p-3">
-        <div className="speaker-step-bg relative h-full w-full p-4">
-          <div className="relative h-full w-full overflow-hidden">
-            <Image
-              src={speaker.image}
-              alt={speaker.name}
-              fill
-              className="object-cover object-top grayscale transition-transform duration-500 group-hover:scale-105"
-              sizes="280px"
-            />
-          </div>
-        </div>
+      <div className="speaker-step-bg relative mx-auto aspect-[4/5] w-full overflow-hidden">
+        <Image
+          src={speaker.image}
+          alt={speaker.name}
+          fill
+          className="object-cover object-top grayscale transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width:768px) 80vw, 33vw"
+        />
       </div>
       {!textAbove && <div className="mt-4 text-center md:mt-5">{nameBlock}</div>}
     </Link>
@@ -48,13 +44,13 @@ export default function Speakers() {
     <section id="speakers" className="section-border bg-[#151515] section-y">
       <Container>
         <div className="mb-14 text-center">
-          <NotchBadge borderColor="border-[#d9ff3f]" className="mb-6">
+          <NotchBadge borderColor="border-[#66f7ff]" className="mb-6">
             Speakers
           </NotchBadge>
-          <h2 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">Our Speakers</h2>
+          <h2 className="text-4xl font-bold text-white md:text-5xl lg:text-7xl">Our Speakers</h2>
         </div>
 
-        <div className="hidden gap-8 md:grid md:grid-cols-3">
+        <div className="hidden gap-6 md:grid md:grid-cols-3 lg:gap-8">
           {SPEAKERS.map((speaker, i) => (
             <SpeakerCard key={speaker.id} speaker={speaker} textAbove={i < 3} />
           ))}
